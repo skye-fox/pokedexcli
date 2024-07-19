@@ -5,9 +5,17 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/skye-fox/pokedexcli/internal/pokeapi"
 )
 
-func startRepl() {
+type config struct {
+	pokeapiClient pokeapi.Client
+	next          *string
+	previous      *string
+}
+
+func startRepl(cfg *config) {
 	fmt.Println("Welcome to Pokedex!")
 	fmt.Println("Type help for a list of commands.")
 	fmt.Println()
@@ -26,7 +34,7 @@ func startRepl() {
 			}
 
 			if cmd, ok := getCommands()[input]; ok {
-				err := cmd.callback()
+				err := cmd.callback(cfg)
 				if err != nil {
 					fmt.Println("Error:", err)
 				}
@@ -41,7 +49,7 @@ func startRepl() {
 type cliCommand struct {
 	name        string
 	description string
-	callback    func() error
+	callback    func(*config) error
 }
 
 func getCommands() map[string]cliCommand {
@@ -56,6 +64,16 @@ func getCommands() map[string]cliCommand {
 			name:        "exit",
 			description: "Exit the Pokedex",
 			callback:    commandExit,
+		},
+		"map": {
+			name:        "map",
+			description: "Page forward through locations in the pokemon world",
+			callback:    commandMap,
+		},
+		"mapb": {
+			name:        "mapb",
+			description: "Page backward through locations in the pokemon world",
+			callback:    commandMapB,
 		},
 	}
 }
