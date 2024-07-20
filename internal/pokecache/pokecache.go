@@ -37,8 +37,8 @@ func (c *Cache) Add(key string, val []byte) {
 func (c *Cache) Get(key string) ([]byte, bool) {
 	c.mu.RLock()
 	defer c.mu.RUnlock()
-	if k, ok := c.cacheMap[key]; ok {
-		return k.val, true
+	if v, ok := c.cacheMap[key]; ok {
+		return v.val, true
 	}
 	return nil, false
 }
