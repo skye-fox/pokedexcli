@@ -2,19 +2,21 @@ package main
 
 import "fmt"
 
-func commandExplore(cfg *config, input []string) error {
-	if len(input) < 2 || len(input) > 2 {
+func commandExplore(cfg *config, args ...string) error {
+	if len(args) != 1 {
 		fmt.Println()
 		return fmt.Errorf("Invalid command, explore requires a location argument\n")
 	}
-	pokemonResp, err := cfg.pokeapiClient.PokemonList(input[1])
+	pokemonResp, err := cfg.pokeapiClient.PokemonList(args[0])
 	if err != nil {
 		return err
 	}
 
 	fmt.Println()
+	fmt.Printf("Exploring %s...\n", pokemonResp.Name)
+	fmt.Println("Found Pokemon: ")
 	for _, v := range pokemonResp.PokemonEncounters {
-		fmt.Println(v.Pokemon.Name)
+		fmt.Printf(" - %s\n", v.Pokemon.Name)
 	}
 	fmt.Println()
 	return nil
