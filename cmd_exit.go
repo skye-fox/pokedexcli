@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func commandExit(cfg *config) error {
+func commandExit(cfg *config, input []string) error {
 	fmt.Println("\nExiting...")
 	os.Exit(0)
 	return nil
