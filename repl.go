@@ -85,6 +85,11 @@ func getCommands() map[string]cliCommand {
 			description: "Explore an area to see what pokemon are there!",
 			callback:    commandExplore,
 		},
+		"inspect": {
+			name:        "inspect <pokemon name>",
+			description: "View details about a pokemon that is in your pokedex!",
+			callback:    commandInspect,
+		},
 		"map": {
 			name:        "map",
 			description: "Page forward through locations in the pokemon world",
