@@ -100,5 +100,10 @@ func getCommands() map[string]cliCommand {
 			description: "Page backward through locations in the pokemon world",
 			callback:    commandMapB,
 		},
+		"pokedex": {
+			name:        "inspect <pokemon name>",
+			description: "View a list of pokemon in your pokedex!",
+			callback:    commandPokedex,
+		},
 	}
 }
