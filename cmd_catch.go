@@ -50,21 +50,21 @@ func catchPokemon(pokemon pokeapi.Pokemon, catchResult int, args ...string) bool
 			fmt.Printf("\n%s got away!\n", args[0])
 		}
 	} else if pokemon.BaseExperience > 249 {
-		if catchResult > 90 {
+		if catchResult > 70 {
 			caught = true
 			fmt.Printf("\nYou caught %s!\n", args[0])
 		} else {
 			fmt.Printf("\n%s got away!\n", args[0])
 		}
 	} else if pokemon.BaseExperience > 199 {
-		if catchResult > 80 {
+		if catchResult > 60 {
 			caught = true
 			fmt.Printf("\nYou caught %s!\n", args[0])
 		} else {
 			fmt.Printf("\n%s got away!\n", args[0])
 		}
 	} else if pokemon.BaseExperience > 149 {
-		if catchResult > 60 {
+		if catchResult > 50 {
 			caught = true
 			fmt.Printf("\nYou caught %s!\n", args[0])
 		} else {
